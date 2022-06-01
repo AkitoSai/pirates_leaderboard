@@ -5,7 +5,7 @@
 
 
 API 響應端口：  
-http://35.200.24.201:5000/spkuji_api/get](http://34.84.150.189/pirates_leaderboard/get.php
+http://34.84.150.189/pirates_leaderboard/get.php
 
 ====================================  
 Read Me  
