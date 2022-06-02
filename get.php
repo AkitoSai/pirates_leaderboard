@@ -1,7 +1,7 @@
 <?php
 $servername = "localhost";
 $username = "root";
-$password = "@Kobeshaq0834";
+$password = "**********";
 $dbname = "leaderboard";
 
 // Create connection
@@ -31,7 +31,7 @@ if (mysqli_query($conn, $intoQuery)) {
 
 
 //查詢
-$selectQuery = "SELECT * FROM pirats order by score";
+$selectQuery = "SELECT * FROM pirats order by score DESC LIMIT 50";
 //$selectQuery = "SELECT name, score, time FROM pirats";
 $result = $conn->query($selectQuery);
  
@@ -44,9 +44,10 @@ if ($result->num_rows > 0) {
     // 输出数据
     while($row = $result->fetch_assoc()) {
         
+        //array_unshift($resultsArray, array("name"=> $row["name"],"score"=>(int)$row["score"],"datetime"=>$row["datetime"]));
         array_push($resultsArray, array("name"=> $row["name"],"score"=>(int)$row["score"],"datetime"=>$row["datetime"]));
         
-        //$resultsArray[] =array("name"=> $row["name"],"score"=>(int)$row["score"],"datetime"=>$row["datetime"]);
+        //$resultsArray[0] =array("name"=> $row["name"],"score"=>(int)$row["score"],"datetime"=>$row["datetime"]);
         //Lack of index 1
         //echo "{name:" . $row["name"]. ",score:" . $row["score"]. ",time:" . $row["time"]. "}";
         
