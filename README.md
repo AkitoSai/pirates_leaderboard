@@ -1,10 +1,10 @@
 # pirates_leaderboard
-以 PHP + MySQL 架設於 GCP(Google Cloud Platform) 的Apache主機，提供 AkitosHome 中的打海賊遊戲的成績GET方式上傳用玩家名稱(name)以及得分(score)兩項數據，接收後連同Server端取得的日期時間(datetime)一起寫入leaderboard資料庫的pirates資料表
+以 PHP + MySQL 架設於 GCP(Google Cloud Platform) 的Apache主機，提供 AkitosHome 程式中的打海賊遊戲的成績以 GET 方式上傳玩家名稱(name)以及得分(score)兩項數據，接收後連同 Server 端取得的日期時間(datetime)一起寫入 leaderboard 資料庫的 pirates 資料表。
 
-上傳是否成功會記錄在upload參數裡，連同取得pirates資料表中非數最高的前筆資料一起合併成JSON格式回傳
+上傳是否成功會記錄在 upload 參數裡，連同取得 pirates 資料表中分數最高的前50筆資料一起合併成JSON格式回傳。
 
 API 響應端口：  
-http:derb
+http://34.84.150.189/pirates_leaderboard/get.php  
 
 ====================================  
 Read Me  
