@@ -1,7 +1,7 @@
 <?php
 $servername = "localhost";
 $username = "root";
-$password = "********";
+$password = "@Kobeshaq0834";
 $dbname = "leaderboard";
 
 // Create connection
@@ -13,15 +13,19 @@ if (!$conn) {
 
 
 //上傳
-$myName = "j94w。６";
-$myScore = 37465;
-$today = date("Y-m-d H:i:s");
+$gerName = $_GET["name"];
+$getScore = $_GET["score"];
+$todaynow = date("Y-m-d H:i:s");
 
-$intoQuery = "INSERT INTO pirats (name,score,time) VALUES ('$myName','$myScore','$today')";
+$uploadMeeage = "error";
+$jsonResultsArray = array();
+$intoQuery = "INSERT INTO pirats (name,score,datetime) VALUES ('$gerName','$getScore','$todaynow')";
 
 if (mysqli_query($conn, $intoQuery)) {
+    $uploadMeeage = "success";
     //echo "New record created successfully";
 } else {
+    $uploadMeeage = "error";
     //echo "Error: " . $sql . "<br>" . mysqli_error($conn);
 }
 
@@ -32,35 +36,32 @@ $selectQuery = "SELECT * FROM pirats order by score";
 $result = $conn->query($selectQuery);
  
 $num_cnt = 0;
-$responsejsonString = "{\"results\":";
-$responsejsonString .= "[";
+
+$resultsArray = array();
 
 if ($result->num_rows > 0) {
-    
-    $responsejsonString .= "[";
     
     // 输出数据
     while($row = $result->fetch_assoc()) {
         
+        array_push($resultsArray, array("name"=> $row["name"],"score"=>(int)$row["score"],"datetime"=>$row["datetime"]));
         
-        if($num_cnt != 0){
-            $responsejsonString .= ",";
-        }
-         
-        $num_cnt += 1;
-        
+        //$resultsArray[] =array("name"=> $row["name"],"score"=>(int)$row["score"],"datetime"=>$row["datetime"]);
+        //Lack of index 1
         //echo "{name:" . $row["name"]. ",score:" . $row["score"]. ",time:" . $row["time"]. "}";
-        $responsejsonString .= "{\"name\":\"" . $row["name"]. "\",\"score\":" . $row["score"]. ",\"time\":\"" . $row["time"]. "\"}";
+        
+        $num_cnt += 1;
     }
 
 } else {
-    echo "{}";
+    //echo "{}";
 }
 
-$responsejsonString .= "]";
-$responsejsonString .= "}";
+//$jsonResultsArray[] = array("results"=>$resultsArray);
 
-echo $responsejsonString;
+$jsonResultsArray = array("upload"=>$uploadMeeage,"results"=>$resultsArray);
+
+echo json_encode($jsonResultsArray);
 
 mysqli_close($conn);
 ?>
