@@ -32,7 +32,6 @@ if (mysqli_query($conn, $intoQuery)) {
 
 //查詢
 $selectQuery = "SELECT * FROM pirats order by score DESC LIMIT 50";
-//$selectQuery = "SELECT name, score, time FROM pirats";
 $result = $conn->query($selectQuery);
  
 $num_cnt = 0;
