@@ -44,12 +44,7 @@ if ($result->num_rows > 0) {
     // 输出数据
     while($row = $result->fetch_assoc()) {
         
-        //array_unshift($resultsArray, array("name"=> $row["name"],"score"=>(int)$row["score"],"datetime"=>$row["datetime"]));
         array_push($resultsArray, array("name"=> $row["name"],"score"=>(int)$row["score"],"datetime"=>$row["datetime"]));
-        
-        //$resultsArray[0] =array("name"=> $row["name"],"score"=>(int)$row["score"],"datetime"=>$row["datetime"]);
-        //Lack of index 1
-        //echo "{name:" . $row["name"]. ",score:" . $row["score"]. ",time:" . $row["time"]. "}";
         
         $num_cnt += 1;
     }
@@ -57,8 +52,6 @@ if ($result->num_rows > 0) {
 } else {
     //echo "{}";
 }
-
-//$jsonResultsArray[] = array("results"=>$resultsArray);
 
 $jsonResultsArray = array("upload"=>$uploadMeeage,"results"=>$resultsArray);
 
